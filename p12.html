@@ -1,0 +1,40 @@
+<script>
+    /*
+     Input :- Basic Salary
+     o/p: gross salary
+
+     bs greater then 10000
+      hra = 10%
+      ta = 5%
+      da = 3%
+      otherwise
+       hra = 5%
+       ta = 3%;
+     
+       Do not repeat yourself (DRY)
+       Keep it simple & short (KISS)
+     */
+ var bs,gs,hra,ta,da=0;
+ var bs = prompt("Enter Basic salary")*1;
+ if(bs >= 10000){
+   hra = (bs*10)/100;
+   ta = (bs*5)/100;
+   da = (bs*3)/100;
+ } 
+ else{
+   hra = (bs*10)/100;
+   ta = (bs*5)/100;
+ }
+ gs = bs + hra + ta + da;
+ document.write(`<h1>HRA : ${hra}</h1>`);
+ document.write(`<h1>TA : ${ta}</h1>`);
+ da && document.write(`<h1>DA : ${da}</h1>`);
+ document.write(`<h1>GS : ${gs}</h1>`);
+ 
+</script>
+
+
+
+
+
+
