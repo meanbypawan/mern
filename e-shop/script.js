@@ -25,21 +25,37 @@ function HeaderComponent(){
     var optionDiv = document.createElement("div");
     optionDiv.setAttribute("style","width:15%;height:60px");
     optionDiv.setAttribute("class","d-flex justify-content-around align-items-center");
+    if(!isUserSignedIn()){
+        var signInOption = document.createElement("small");
+        signInOption.innerText = "Sign in";
+        signInOption.setAttribute("class","text-white");
+        signInOption.addEventListener("click",function(){
+            SignInComponent();
+        });
 
-    var signInOption = document.createElement("small");
-    signInOption.innerText = "Sign in";
-    signInOption.setAttribute("class","text-white");
-    signInOption.addEventListener("click",function(){
-        SignInComponent();
-    });
+        var signUpOption = document.createElement("small");
+        signUpOption.innerText = "Sign up";
+        signUpOption.setAttribute("class","text-white");
 
-    var signUpOption = document.createElement("small");
-    signUpOption.innerText = "Sign up";
-    signUpOption.setAttribute("class","text-white");
-
-    optionDiv.appendChild(signInOption);
-    optionDiv.appendChild(signUpOption);
-
+        optionDiv.appendChild(signInOption);
+        optionDiv.appendChild(signUpOption);
+    }
+    else{
+        var viewCartOption = document.createElement("small");
+        viewCartOption.innerText = "View cart";
+        viewCartOption.setAttribute("class","text-white");
+        
+        var signOut = document.createElement("small");
+        signOut.innerText = "Sign out";
+        signOut.setAttribute("class","text-white");
+        signOut.addEventListener("click",function(){
+           sessionStorage.clear();
+           SignInComponent();
+        });
+        optionDiv.appendChild(viewCartOption);
+        optionDiv.appendChild(signOut);
+            
+    }
     headerContainer.appendChild(logoDiv);
     headerContainer.appendChild(searchDiv);
     headerContainer.appendChild(optionDiv);
@@ -53,7 +69,7 @@ function SignInComponent(){
     cardContainer.setAttribute("class","d-flex justify-content-center align-items-center");
 
     var formDiv = document.createElement("div");
-    formDiv.setAttribute("style","width:25%; height:200px;box-shadow: 0 0 50px black");
+    formDiv.setAttribute("style","width:25%; height:250px;box-shadow: 0 0 50px black");
     
     var formHeader = document.createElement("div");
     formHeader.setAttribute("style","height:50px");
@@ -63,10 +79,134 @@ function SignInComponent(){
     label.innerText = "Sign In";
     label.setAttribute("class","text-white");
     formHeader.appendChild(label);
-    
     formDiv.appendChild(formHeader);
+     
+    var formContainer = document.createElement("div");
+    formContainer.setAttribute("class","container mt-5");
+    
+    var emailInput = document.createElement("input");
+    emailInput.setAttribute("class","form-control");
+    emailInput.setAttribute("type","email");
+    emailInput.setAttribute("placeholder","Enter email id");
+    formContainer.appendChild(emailInput);
+   
+    var passwordInput = document.createElement("input");
+    passwordInput.setAttribute("class","form-control mt-2");
+    passwordInput.setAttribute("type","password");
+    passwordInput.setAttribute("placeholder","Enter password");
+    formContainer.appendChild(passwordInput);
+   
+    var submitButton = document.createElement("button");
+    submitButton.setAttribute("class","btn btn-secondary mt-2");
+    submitButton.innerText = "Submit";
+    formContainer.appendChild(submitButton);
+    
+    submitButton.addEventListener("click",function(){
+        var email = emailInput.value;
+        var password = passwordInput.value;
+        if(signInAction(email,password))
+          window.alert("Sign in success..");
+        else
+          window.alert("Sign in failed..");        
+    });
 
+    var createNewAccount = document.createElement("label")
+    createNewAccount.innerHTML = "<i class='text-primary ml-3' style='cursor:pointer;'>Create new account ?</i>"
+    
+    createNewAccount.addEventListener("click",function(){
+        SignUpComponent();
+    });
+    
+    formContainer.appendChild(createNewAccount);
+    formDiv.appendChild(formContainer);   
     cardContainer.appendChild(formDiv);
+}
+function isUserSignedIn(){
+    return !!sessionStorage.getItem("isLoggedIn");
+}
+function signInAction(email,password){
+    var userList = JSON.parse(localStorage.getItem("user-list"));
+    var user = userList.find((user)=>{return user.email == email && user.password == password});
+    if(user){
+        sessionStorage.setItem("isLoggedIn","true");
+        sessionStorage.setItem("current-user",user.email);
+        //window.location.reload();
+        document.getElementById("main").innerHTML = "";
+        HeaderComponent();
+        CardComponent(getData());
+        return true;
+    } 
+    return false;
+}
+function SignUpComponent(){
+    var cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = "";
+    cardContainer.setAttribute("style","height: 80vh;");
+    cardContainer.setAttribute("class","d-flex justify-content-center align-items-center");
+
+    var formDiv = document.createElement("div");
+    formDiv.setAttribute("style","width:25%; height:250px;box-shadow: 0 0 50px black");
+    
+    var formHeader = document.createElement("div");
+    formHeader.setAttribute("style","height:50px");
+    formHeader.setAttribute("class","bg-danger d-flex justify-content-center align-items-center");
+    
+    var label = document.createElement("label");
+    label.innerText = "Sign Up";
+    label.setAttribute("class","text-white");
+    formHeader.appendChild(label);
+    formDiv.appendChild(formHeader);
+     
+    var formContainer = document.createElement("div");
+    formContainer.setAttribute("class","container mt-5");
+    
+    var emailInput = document.createElement("input");
+    emailInput.setAttribute("class","form-control");
+    emailInput.setAttribute("type","email");
+    emailInput.setAttribute("placeholder","Enter email id");
+    formContainer.appendChild(emailInput);
+   
+    var passwordInput = document.createElement("input");
+    passwordInput.setAttribute("class","form-control mt-2");
+    passwordInput.setAttribute("type","password");
+    passwordInput.setAttribute("placeholder","Enter password");
+    formContainer.appendChild(passwordInput);
+   
+    var submitButton = document.createElement("button");
+    submitButton.setAttribute("class","btn btn-secondary mt-2");
+    submitButton.innerText = "Submit";
+    formContainer.appendChild(submitButton);
+    
+    submitButton.addEventListener("click",function(){
+        var email = emailInput.value;
+        var password = passwordInput.value;
+        if(signUpAction(email,password))
+          window.alert("Sign up success..");
+    });
+    var alreadyHaveAccount = document.createElement("label")
+    alreadyHaveAccount.innerHTML = "<i class='text-primary ml-3' style='cursor:pointer;'>Already have a account ?</i>"
+    
+    alreadyHaveAccount.addEventListener("click",function(){
+        SignInComponent();
+    });
+    
+    formContainer.appendChild(alreadyHaveAccount);
+    formDiv.appendChild(formContainer);   
+    cardContainer.appendChild(formDiv);
+
+}
+function signUpAction(email,password){
+   try{ 
+    var newUser = {email, password};
+    var userList = JSON.parse(localStorage.getItem("user-list"));
+    userList.push(newUser);
+    localStorage.setItem("user-list",JSON.stringify(userList));
+    return true;
+   }
+   catch(err){
+    console.log(err);
+     return false;
+   } 
 }
 function CardComponent(data){
    var mainDiv = document.getElementById("main"); 

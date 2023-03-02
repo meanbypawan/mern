@@ -16,6 +16,7 @@
     <body>
         <div id="main" class="container-fluid"></div>
         <script>
+            !localStorage.getItem("user-list") && localStorage.setItem("user-list","[]");
             loadData(getData());
             HeaderComponent();
             CardComponent(getData());
