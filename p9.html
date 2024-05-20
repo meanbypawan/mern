@@ -1,0 +1,22 @@
+<script>
+    /*
+      a = 20;
+      b = 10;
+      x = 20(a)
+      c = 30;
+    */
+
+   var a = prompt("Enter A First number");
+   var b = prompt("Enter second number");
+   var c = prompt("Enter third number");
+   
+   a = parseInt(a);
+   b = parseInt(b);
+   c = parseInt(c);
+   
+   /*
+   var x = a > b ? a : b;
+   x > c ? document.write("Max : "+x) : document.write("Max : "+c);
+   */
+  (a > b) && (a > c) ? document.write("Max : "+a) : (b > c) ? document.write("Max : "+b) : document.write("Max : "+c);
+</script>
