@@ -1,0 +1,13 @@
+<script>
+    var customer = {
+        id: 100,
+        cname: "ABC",
+        mobile: 9009111222,
+        age: 25
+    };
+
+    //document.write(customer.id+" "+customer.cname+" "+customer.mobile+" "+customer.age);
+    //document.write(customer.id+" "+customer.cname+" "+customer.mobile+" "+customer["age"]);
+    for(var property in customer)
+      document.write(customer[property]+"<br>");
+</script>

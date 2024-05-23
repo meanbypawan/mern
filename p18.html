@@ -1,0 +1,8 @@
+<script>
+
+    var c1 = {id:100,cname:"ABC",age:25};
+    //var c2 = c1;
+    var c2 = {...c1};
+    delete c1.age;
+    document.write(c2.id+" "+c2.cname+" "+c2.age);
+</script>

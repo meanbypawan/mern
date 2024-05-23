@@ -1,0 +1,9 @@
+<script>
+    var obj1 = {a:20,b:10};
+    var obj2 = {a:20,b:10};
+
+    document.write(obj1 == obj2);
+
+    var obj3 = JSON.parse(JSON.stringify(obj1));
+    document.write("<br>"+(obj1 == obj3));
+</script>
