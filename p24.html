@@ -1,0 +1,12 @@
+<script>
+    var arr = {
+      data1: [10,20,30],
+      data2: [40,50,60]
+    }
+
+    for(var key in arr){
+        for(var index in arr[key])
+          document.writeln(arr[key][index]);
+        document.write("<br>")
+    }
+</script>
