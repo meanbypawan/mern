@@ -1,0 +1,19 @@
+<script>
+    function f1(a,b,c){
+      // typeof(a) : number
+      // typeof(b) : boolean
+      // typeof(c) : string
+      // a : 20
+      // b: true
+      // c: function(){document.write("Callback executed...");}
+      c();
+    }
+
+    var x = 20;
+    var y = true;
+    var z = function(){
+        document.write("Callback executed...");
+    };
+    f1(x,y,z);
+    //document.write(x);
+</script>
