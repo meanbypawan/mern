@@ -1,0 +1,44 @@
+<script>
+    function ICICI(bal){
+        this.bal = bal;
+        this.deposite = function(amount){
+            this.bal += amount;
+            document.write("<br>Deposite success");
+            // Sent sms to user by sms api
+        }
+        this.withdrawal =function(amount){
+            if(amount > bal)
+              document.write("<br>Insufficient balance");
+            else{
+                this.bal -= amount;
+                document.write("<br>Withdrawal success");
+                // Sent sms to user
+            }
+        }
+        this.balanceEnquiry = function(){
+            document.write("<br>Current Balance : "+this.bal);
+        }
+
+    }
+
+    var cheeku = new ICICI(50000); // cheeku : bal=50000
+    cheeku.deposite(10000);
+    cheeku.balanceEnquiry();
+
+    // After sometime cheeku want to get money 
+    cheeku.withdrawal(5000);
+    cheeku.balanceEnquiry();
+
+    // After very long time cheeku want to know bal
+    cheeku.balanceEnquiry();
+/*
+   Asynchronous Code / Non-blocking Code
+   Timer Api (setTimeout, setInterval)
+   callback Hell
+   Promise
+   Promise Hell
+   async await
+   DOM
+   */
+
+</script>

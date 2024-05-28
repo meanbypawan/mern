@@ -1,0 +1,15 @@
+<script>
+    /*
+      We have to perform addition of two number
+      and then we have to check resultant value
+      is even or odd by using callback mechanism.
+    */
+   function addition(a,b,callback){
+     var result = a + b;
+     document.write("<br>Addition : "+result);
+     callback(result);
+   }
+   addition(20,10,function(n){
+    n%2 ? document.write("<br>Odd") : document.write("<br>Even");
+   });
+</script>

@@ -1,0 +1,19 @@
+<script>
+    function operation(a,b,evenOddCallback,posNegCallback){
+       var result;
+       result = a + b;
+       document.write("<br>Result : "+result);
+       evenOddCallback(result);
+       posNegCallback(result);
+    }
+    operation(-20,11,(n)=>{
+        n%2 ? document.write("<br>Odd") : document.write("<br>Even");
+    },(n)=>{
+        if(n > 0)
+          document.write("<br>Positive");
+        else if(n < 0)
+              document.write("<br>Negative");
+             else
+              document.write("<br>Neither +ve nor -ve");
+    });
+</script>

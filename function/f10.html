@@ -1,0 +1,40 @@
+<script>
+    /*
+      Bank : ICICI
+      Cheeku : Customer of ICICI
+               bal : 5000
+               ---------------
+               deposite()
+               withdrawal()
+               balanceEnquiry()
+    -------------------------------------------------
+      Arithmetic
+        property : a,b
+        behaviour: add(),sub(),mult() 
+      
+     c++,java
+     class Arithmetic{
+        int a,b;
+        add(){}
+        sub(){}
+        mult(){}
+     }   
+     obj = new Arithmetic();
+    */
+   function Airhtmetic(a,b){
+     this.a = a;
+     this.b = b;
+     this.add = function(){
+        document.write("<br>Addition : "+(this.a + this.b));
+     };
+     this.sub = function(){
+        document.write("<br>Subtration : "+(this.a - this.b));
+     }
+
+   }
+
+   var obj = new Airhtmetic(20,10);//obj= a:20,b:10
+   obj.add();
+   var obj2 = new Airhtmetic(5,4);
+   obj2.sub();
+</script>
