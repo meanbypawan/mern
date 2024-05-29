@@ -1,0 +1,17 @@
+<script>
+
+    function f1(a,b){
+        var c = 100;
+        document.write("F1 executed/(outer scope)")
+        return function f2(){
+            document.write("<br> a : "+a);
+            document.write("<br> b : "+b);
+            document.write("<br> c : "+c);
+            document.write("F2 execute/(Inner scope)");
+        }
+    }
+
+    var inner = f1(20,10);
+    // 1000 line of code
+    inner();
+</script>

@@ -1,0 +1,21 @@
+<script>
+    /*
+      1. Data Encapsulation
+      2. Javascript currying concept
+    */
+   function f1(a){
+     document.write("<br>Inside F1 : a : "+a);
+     return function(b){
+        document.write("<br>Inside F2 : b : "+b);
+        return function(c){
+            document.write("<br>Inside F3 : c : "+c);
+            return a * b * c;
+        }
+     }
+   }
+//    var f2 = f1(2);
+//    var f3 = f2(3);
+//    var result = f3(4);
+   var result = f1(2)(3)(4); // currying
+   document.write("<br>Result : "+result);
+</script>

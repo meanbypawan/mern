@@ -1,0 +1,10 @@
+DOM [Document Object Model]
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+     <div id="content">----</div>
+     <img src='main.png' id='logo' width='100px' heigth='100px'/>
+  </body>
+</html>

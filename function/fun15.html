@@ -1,0 +1,19 @@
+<script>
+    // Data Encapsulation
+    function DataEncapsulation(){
+        this.x = 100;
+        this.f1 = function(){
+            document.write("<br>Inside F1 : "+this.x);
+        }
+        this.f2 = function(){
+            document.write("<br>Inside F2 : "+this.x);
+        }
+        this.f3 = function(){
+            document.write("<br>Inside F3 : "+this.x);
+        }
+    }
+    var obj = new DataEncapsulation(); // obj : x(100)
+    obj.f1();
+    obj.f2();
+    obj.f3();
+</script>
