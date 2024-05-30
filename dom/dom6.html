@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <script>
+            function changeTheme(evenRowColor,oddRowColor){
+               var tableObj = document.getElementById("data-table");
+               var tableRows = tableObj.rows;
+               for(var index =1; tableRows.length; index++){
+                  if(index%2==0)
+                   tableRows[index].style.backgroundColor=evenRowColor;
+                  else
+                  tableRows[index].style.backgroundColor=oddRowColor;
+               }
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="changeTheme('red','magenta')">Red-Magenta</button>
+        <button onclick="changeTheme('brown','pink')">Brown-Pink</button>
+        <button onclick="changeTheme('blue','orange')">Blue-orange</button>
+        <br><br>
+        <table id="data-table" border='1' width="100%">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Mobile</td>
+                <td>Age</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>ABC</td>
+                <td>9009111222</td>
+                <td>30</td>
+            </tr>
+
+        </table>
+    </body>
+</html>

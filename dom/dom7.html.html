@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <style>
+            #board{
+                height: 400px;
+                background-color: black;
+                color: white;
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <input id="data" onkeyup="getData()" type="text" placeholder="Write some data" style="width:100%; height:30px;"/>
+            <div id="board"></div>
+        </center>
+        <script>
+            function getData(){
+               var data = document.getElementById("data").value;
+               document.getElementById("board").innerHTML = data;
+            }
+        </script>
+    </body>
+</html>

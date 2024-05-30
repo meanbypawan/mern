@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Dom Excercise</title>
+    </head>
+    <body>
+      <center>  
+        <img id="main" src="images/micky.jpeg" width="200px" height="200px"/>
+        <br/>
+        <button id="plus" onclick="modifyImage(true)">+</button>
+        <button id="minus" onclick="modifyImage(false)">-</button>
+      </center>
+      <script>
+         function modifyImage(n){
+          var mainImage = document.getElementById("main");
+          if(n){
+             mainImage.width += 20;
+             mainImage.height += 20;
+          }
+          else{
+            mainImage.width -= 20;
+             mainImage.height -= 20;
+          
+          }
+         }
+      </script>
+    </body>
+ </html>   

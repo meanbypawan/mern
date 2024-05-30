@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <style>
+            #main{
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <img onmouseover="rotateImage()" id="main" src="images/micky.jpeg" width="400px" height="400px"/>
+            <br><br><br>
+            <img onclick="changeImage(this)" id="first" src="images/doremon.jpeg" width="100px" height="100px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <img onclick="changeImage(this)" id="second" src="images/pikachoo.png" width="100px" height="100px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <img onclick="changeImage(this)" id="third" src="images/chota-bhim.png" width="100px" height="100px"/>&nbsp;&nbsp;&nbsp;&nbsp;
+        </center>
+        <script>
+            function rotateImage(){
+                var mainImage = document.getElementById("main");
+                mainImage.setAttribute("style","rotate:20deg");
+            }
+            function changeImage(currentImage){
+               var mainImage = document.getElementById("main");
+               //var currentImage = document.getElementById(currentImageId); 
+               var temp = mainImage.src;
+               mainImage.src = currentImage.src;
+               currentImage.src = temp;
+            }
+        </script>
+    </body>
+</html>

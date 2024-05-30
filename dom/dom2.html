@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Dom Excercise</title>
+    </head>
+    <body>
+      <center>  
+        <img id="main" src="images/micky.jpeg" width="200px" height="200px"/>
+        <br/>
+        <button onclick="increaseImage()">+</button>
+        <button onclick="decreaseImage()">-</button>
+      </center>
+      <script>
+        function increaseImage(){
+            var mainImage = document.getElementById("main");
+            mainImage.width += 20;
+            mainImage.height += 20;
+        }
+        function decreaseImage(){
+            var mainImage = document.getElementById("main");
+            mainImage.width -= 20;
+            mainImage.height -= 20;
+            
+        }
+      </script>
+    </body>
+ </html>   
