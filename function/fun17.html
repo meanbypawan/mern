@@ -1,0 +1,41 @@
+<script>
+/*
+  a. synchronous/blocking code
+     
+     task----1; // 2min
+     task----2; // 5 min
+     task----3; // 1 min
+     task----4; // 7 min
+ 
+  b. asynchronous non-blocking code
+     task----1; // 2min
+     task----2; // 5 min
+     task----3; // 1 min
+     task----4; // 7 min
+     
+*/
+console.log("At the start........");
+var f1 = ()=>{
+    console.log("First task is done....");
+}
+var f2 = ()=>{
+    console.log("Second task is done....");
+}
+var f3 = ()=>{
+    console.log("Third task is done....");
+}
+var f4 = ()=>{
+    console.log("Fourth task is done....");
+}
+
+f1();
+f2();
+f3();
+f4();
+console.log("At the end............");
+</script>
+
+
+
+
+

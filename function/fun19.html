@@ -1,0 +1,35 @@
+<script>
+    /*
+      o
+     -|- ----> cheeku
+     / \
+    */
+    console.log("At the start......");
+    var eatingPizza = function(callback){
+       setTimeout(()=>{
+         console.log("Pizza Done....");
+         callback();
+       },5000);
+    }
+    var meetingWithFriends = function(callback){
+        setTimeout(function(){
+            console.log("Meeting Done....");
+            callback();
+        },3000);
+    }
+    var servicingCar = function(){
+        setTimeout(()=>{
+            console.log("Servicing Done...");
+        },4000);
+    }
+    
+    // callback hell
+    // Promise
+    // pyramid of doom
+    eatingPizza(function(){
+        meetingWithFriends(function(){
+            servicingCar();
+        });
+    });
+    
+</script>

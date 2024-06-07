@@ -1,0 +1,26 @@
+<script>
+    /*
+       How to asynchronous programming in js
+       Ans :- by using callback
+     */
+    console.log("At the start......");
+    var eatingPizza = function(){
+       setTimeout(()=>{
+         console.log("Pizza Done....");
+       },5000);
+    }
+    var meetingWithFriends = function(){
+        setTimeout(function(){
+            console.log("Meeting Done....");
+        },3000);
+    }
+    var servicingCar = function(){
+        setTimeout(()=>{
+            console.log("Servicing Done...");
+        },4000);
+    }
+    eatingPizza();
+    meetingWithFriends();
+    servicingCar();
+    console.log("At the end....")
+</script>

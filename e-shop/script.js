@@ -44,12 +44,15 @@ function HeaderComponent(){
         var viewCartOption = document.createElement("small");
         viewCartOption.innerText = "View cart";
         viewCartOption.setAttribute("class","text-white");
-        
+        viewCartOption.addEventListener("click",function(){
+           ViewCartComponent();
+        }); 
         var signOut = document.createElement("small");
         signOut.innerText = "Sign out";
         signOut.setAttribute("class","text-white");
         signOut.addEventListener("click",function(){
            sessionStorage.clear();
+           window.location.reload();
            SignInComponent();
         });
         optionDiv.appendChild(viewCartOption);
@@ -245,7 +248,7 @@ function CardComponent(data){
     addToCart.setAttribute("class","btn btn-secondary");
     addToCart.setAttribute("style","width:90%; margin:auto;");
     addToCart.addEventListener("click",function(){
-        addToCart(data[index].id);
+        addToCartAction(data[index]);
     });
     cardContent.appendChild(addToCart);
 
@@ -256,8 +259,98 @@ function CardComponent(data){
    container.appendChild(row);
    mainDiv.appendChild(container);
 }
-function addToCart(productId){
-    // Will write code after some time.....
+function ViewCartComponent(){
+    if(isUserSignedIn()){
+      var cardContainer = document.getElementById("card-container");
+      cardContainer.innerHTML = "";
+      var carts = JSON.parse(localStorage.getItem("cart-list"));
+      var currentUser = sessionStorage.getItem("current-user");
+      if(carts[currentUser]){
+         var itemList = carts[currentUser];
+         var table = document.createElement("table");
+         table.setAttribute("class","table");
+         var headerRow = document.createElement("tr");
+         var td1 = document.createElement("td");
+         td1.innerText = "S.no";
+         var td2 = document.createElement("td");
+         td2.innerText = "Title";
+         var td3 = document.createElement("td");
+         td3.innerText = "Price";
+         var td4 = document.createElement("td");
+         td4.innerText = "Qty";
+         headerRow.appendChild(td1);
+         headerRow.appendChild(td2);
+         headerRow.appendChild(td3);
+         headerRow.appendChild(td4); 
+         table.appendChild(headerRow);
+         
+         for(var index in itemList){
+            var dataRow = document.createElement("tr");
+            td1 = document.createElement("td");
+            td1.innerText = index+1;
+            td2 = document.createElement("td");
+            td2.innerText = itemList[index].title;
+            td3 = document.createElement("td");
+            td3.innerText = itemList[index].price;
+            td4 = document.createElement("td");
+            td4.innerHTML = "<input type='number' value='1' style='width:50px;'/>";
+            dataRow.appendChild(td1);
+            dataRow.appendChild(td2);
+            dataRow.appendChild(td3);
+            dataRow.appendChild(td4);
+            table.appendChild(dataRow); 
+        }
+         cardContainer.appendChild(table);
+      }
+      else
+        window.alert("No ited added in cart");
+    }
+    else
+      window.alert("Please sign in first");
+}
+function addToCartAction(product){
+   /*carts = {
+     "cheeku@gmail.com":[{},{}],
+     "peeku@gmail.com":[{},{}]
+   }*/ 
+   if(isUserSignedIn()){
+      var currentUser = sessionStorage.getItem("current-user");
+      var carts = JSON.parse(localStorage.getItem("cart-list"));
+      console.log(carts);
+        var status = false;
+      
+      for(var key in carts){
+        console.log(key);
+        if(key == currentUser){
+            status = true;
+            break;
+        }
+      }
+      if(status){
+         console.log("Inside If")
+         // User performing second time add to cart
+         var cartItems = carts[currentUser];
+         var isProductExist = cartItems.some((item)=>{return item.id == product.id});
+         if(isProductExist)
+           window.alert("Product is already added in cart");
+         else{
+            carts[currentUser].push(product);
+            localStorage.setItem("cart-list",JSON.stringify(carts));
+            window.alert("Product successfully added in cart");
+         }
+      }
+      else{
+         // First time user is performing add to cart
+         console.log("Inside else : "+status);
+         carts[currentUser] = [];
+         console.log(product);
+         carts[currentUser].push(product);
+         localStorage.setItem("cart-list",JSON.stringify(carts));
+         window.alert("product successfully added in cart...");   
+      }
+    }
+    else
+     window.alert("Please sign in first");
 }
 function loadData(data){
     localStorage.setItem("product-list",JSON.stringify(data));

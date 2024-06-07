@@ -1,0 +1,14 @@
+Introduction
+Call Stack
+Javascript Engine
+Datatypes
+Operator
+Controll Statement
+Array
+Array Method[find,filter,map,some,findIndex]
+Object leteral {}
+Spread operation {...obj}, [...arr]
+JSON, JSON.parse(), JSON.stringify()
+function,arrarow function,IIFE, callback,error back
+DOM , DOM application
+closure
