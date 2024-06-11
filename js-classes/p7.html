@@ -1,0 +1,17 @@
+<script>
+    var arr = [10,20,30,40];
+    console.log(arr);
+    /*
+      arr.push() ,pop(),splice()......
+    */
+   
+
+   Array.prototype.getValue = function(index){
+    console.log("Called....");
+    return this[index];
+   }
+
+   console.log(arr.getValue(1))
+   var arr2 = ["A","B","C"];
+   console.log(arr2.getValue(2));
+</script>
