@@ -1,0 +1,4 @@
+NodeJs is javascript runtime enviornment
+NodeJs is suitable for IO-intensive application
+NodeJs application is super fast and highly scalable;
+NodeJs is single threaded.
