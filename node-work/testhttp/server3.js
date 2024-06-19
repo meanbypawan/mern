@@ -10,6 +10,7 @@ http.createServer((request,response)=>{
    let __filename = url.fileURLToPath(import.meta.url);
    let __dirname = dirname(__filename);
    
+   
    if(parsedUrl.pathname == "/home" && request.method == "GET"){
      let homePagePath = path.join(__dirname,"/views/home.html");
      let data =  fs.readFileSync(homePagePath);
