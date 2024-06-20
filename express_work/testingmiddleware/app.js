@@ -2,6 +2,12 @@ import express from "express";
 
 const app = express(); // app is express application instance
 
+// /home
+app.use((request,response,next)=>{
+    console.log("executed.....");
+    next();
+});
+ 
 // http://localhost:3000/home : GET
 app.get("/home",(request,response,next)=>{
     console.log("/home route");
@@ -25,10 +31,7 @@ app.post("/sub",(request,response,next)=>{
     return response.send("Subtraction : ");
 });
 
-app.use((request,response,next)=>{
-    console.log("executed.....");
- });
- 
+
 app.listen(3000,()=>{
     console.log("Server Started...");
 });
