@@ -6,4 +6,10 @@ router.get("/",(request,response,next)=>{
 router.get("/about",(request,response,next)=>{
     return response.render("about.ejs");
 });
+router.get("/sign-in",(request,response,next)=>{
+    return response.render("signin.ejs");
+});
+router.get("/sign-up",(request,response,next)=>{
+    return response.render("signup.ejs");
+});
 export default router;
