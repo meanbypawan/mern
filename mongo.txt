@@ -1,0 +1,75 @@
+createing database
+ use userdb;
+
+creating collection
+  db.createCollection('user')
+  type of collections
+    a. capped collection
+    b. uncapped collection
+
+Inserting document/record in collection
+ db.user.insert({name:"ABC",age:24,bg: 'a+'});   
+ db.user.insertMany([
+   {
+     name:"B",
+     age: 26,
+     bg: 'a-'
+   },
+   {
+     name:"C",
+     age: 30,
+     bg: 'o+'
+   },
+   {
+     name:"D",
+     age: 22,
+     bg: 'o-'
+   },
+   {
+     name:"C",
+     age: 29,
+     bg: 'ab+'
+   },
+   {
+     name:"F",
+     age: 29,
+     bg: 'b+'
+   }
+ ]);   
+ -------------------------------------------------------------------------
+ Fetch/Select
+// select * from user;
+ db.user.find()
+ 
+ db.user.find({},{name:1, age:1});
+
+Filtering record :-
+  $gt(>), $lt(<), $gte(>=), $lte(<=), $eq(=),$ne
+  $and, $or
+ db.user.find({age: {$gt:25}}) 
+ db.user.find({
+    $and:[{age:{$gt:25}},{age:{$lt:30}}]
+ }) 
+ db.user.find({age:{$eq:30}})   
+ db.user.find({
+   age: db.user.find().sort({age:-1}).toArray()[0].age
+ })   
+ db.user.find({
+   age:{$lt: db.user.find().sort({age:-1}).toArray()[0].age}
+ }).sort({age:-1}).toArray()[0].age   
+ 
+ db.user.find({
+  age: db.user.find({
+   age:{$lt: db.user.find().sort({age:-1}).toArray()[0].age}
+ }).sort({age:-1}).toArray()[0].age
+ })    
+ -----------------------------------------------------------------------
+ Reference key
+ Embedded Document
+ 
+ 
+ 
+ 
+    
+    
+    
