@@ -67,7 +67,92 @@ Filtering record :-
  Reference key
  Embedded Document
  
- 
+ db.category.insertMany([
+ {
+    categoryName: 'A'
+ },
+ {
+    categoryName: 'B'
+ },
+ {
+    categoryName: 'C'
+ }
+])
+db.product.insertMany([
+{
+   name: 'P1',
+   categoryName: 'A'
+},
+{
+   name: 'P2',
+   categoryName: 'A'
+},
+{
+   name: 'P3',
+   categoryName: 'B'
+},
+{
+   name: 'P4',
+   categoryName: 'B'
+},
+{
+   name: 'P5',
+   categoryName: 'C'
+},
+{
+   name: 'P6',
+   categoryName: 'C'
+},
+{
+   name: 'P7',
+   categoryName: 'A'
+},
+{
+   name: 'P8',
+   categoryName: 'A'
+},
+{
+   name: 'P9',
+   categoryName: 'B'
+}
+]);
+-------------------------------------------------
+db.category.aggregate([
+ {
+    $lookup:{
+       from: 'product',
+       localField: 'categoryName',
+       foreignField: 'categoryName',
+       as: 'productList'
+    }
+ },{
+   $match:{
+     categoryName: 'A'
+   }
+ },{
+   $project:{_id:0,'productList._id':0,'productList.categoryName':0}
+ }
+]);
+---------------------------------
+db.user.update({
+   age:{$gt: 25}
+},{
+  $set:{bg: 'a-',name: 'cheeku'}
+},{multi: true})
+db.user.update({},{$pull:{salary:1}})
+-----------------------------------------------------------
+express Application + mongoose + mongodb
+npm install mongoose
+
+
+
+
+
+
+
+
+
+
  
  
     
