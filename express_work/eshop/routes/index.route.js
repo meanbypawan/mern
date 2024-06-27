@@ -22,6 +22,12 @@ router.post("/sign-up",(request,response,next)=>{
     console.log(err);
   });
 });
+router.post("/signout",(request,response,next)=>{
+   request.session.currentUserEmail = null;
+   request.session.currentUserId = null;
+   request.session.destroy();
+   return response.redirect("/");
+});
 router.post("/sign-in",(request,response,next)=>{
   let {email,password} = request.body;
   db.collection("users").findOne({email,password})
