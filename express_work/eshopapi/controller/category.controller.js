@@ -40,4 +40,12 @@ export const getCategoryList = (request,response,next)=>{
         return response.status(500).json({error: "Internal server error"});
     });
 }
-export const deleteCategory = (request,response,next)=>{}
+export const deleteCategory = (request,response,next)=>{
+    let id = request.params.id;
+    Category.deleteOne({_id:id})
+    .then(result=>{
+        return response.status(200).json({message: "Category deleted successfully"});
+    }).catch(err=>{
+        return response.status(500).json({error: "Server Error"});
+    })
+}
