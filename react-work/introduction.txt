@@ -1,0 +1,37 @@
+Single Page Application:-
+ 1. ReactJs
+    a. Javascript[you can also use typescript]
+    b It uses virtual dom
+    c. Fast
+    d. It is library
+    e. One-way binding
+ 2. Angular
+    a. Primary language of angular is TypeScript
+    b. It use actual dom
+    c. Slow
+    d. Angular Framework
+    e. Two - way binding
+
+ReactJs :-
+ 1. ReactJs is developed by facebook.
+ 2. It is Javascript library.
+ 3. It is used to build dynamic , interactive user interface.
+ 4. It is used to develop single page application.
+ 5. ReactJs application use component based architecture
+ 6. Component represent UI/ Protion of UI.
+ 7. React application by default has one component called root component
+    (App component)
+ 8. Component = Js + CSS + JSX
+ 9. In React 2-types of component
+     a. Stateless component
+     b. Statefull component
+    
+    Before React 16.8
+     Stateless Component [Functional Component]
+     Statefull [Class Component]
+
+    From 16.8
+      ReactJs Introduce concept Of HOOKS
+      functional component + hook = Statefull  
+  How to create-application
+    npx create-react-app testapp
