@@ -34,5 +34,11 @@ export default [
         name: 'Neesha',
         branch: "IT",
         contact: 9009111777
+    },
+    {
+        roll: 1007,
+        name: 'Rahul',
+        branch: "MECH",
+        contact: 90091118888
     }
 ]
