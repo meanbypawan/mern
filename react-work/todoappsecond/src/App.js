@@ -4,10 +4,9 @@ function App(){
    const [taskList,setTaskList] = useState(Data);
    const [defaultStatus,setDefaultStatus] = useState("Active");
    const [priorityList,setPriorityList] = useState([{priorityId:1, priorityValue:"High"},{priorityId:2, priorityValue:"Medium"},{priorityId:3, priorityValue:"Low"}])
+   const [title,setTitle] = useState("");
+   const [pid,setPid] = useState("");
    
-   let titleInput = useRef();
-   let priorityInput = useRef();
-
    const changeTaskStatus = (status,title)=>{
      let index =  taskList.findIndex((task)=>{return task.title == title});
      let task = taskList[index];
@@ -17,8 +16,6 @@ function App(){
      setTaskList([...taskList]);
    }
    const addNewTask = ()=>{
-     const title = titleInput.current.value;
-     let pid = priorityInput.current.value;
      let status = "Active";
      let date = new Date();
      date = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
@@ -32,10 +29,10 @@ function App(){
       <div className="container mt-3">
         <div className="row">
           <div className="col-md-6">
-            <input ref={titleInput} type="text" className="form-control" placeholder="Enter task title"/>
+            <input onChange={(event)=>setTitle(event.target.value)} type="text" className="form-control" placeholder="Enter task title"/>
           </div>
           <div className="col-md-6">
-            <select ref={priorityInput} className="form-control">
+            <select onChange={(event)=>setPid(event.target.value)} className="form-control">
               {priorityList.map((obj,index)=><option key={index} value={obj.priorityId}>{obj.priorityValue}</option>)}
             </select>
           </div>
