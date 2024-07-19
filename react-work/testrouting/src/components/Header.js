@@ -9,8 +9,12 @@ export default function Header(){
         <Link to="/about">
          <small style={{cursor: "pointer"}} className="p-3 bg-danger text-white">About us</small>
         </Link>
-        <small style={{cursor: "pointer"}} className="p-3 bg-danger text-white">Contact us</small>
-        <small style={{cursor: "pointer"}} className="p-3 bg-danger text-white">Categories</small>
+        <Link to="/useEffectDemo">
+          <small style={{cursor: "pointer"}} className="p-3 bg-danger text-white">useEffect</small>
+        </Link>
+        <Link to="/categories">
+          <small style={{cursor: "pointer"}} className="p-3 bg-danger text-white">Categories</small>
+        </Link>
         <small style={{cursor: "pointer"}} className="p-3 bg-danger text-white">Product</small>
       </div>
     </>
