@@ -1,20 +1,9 @@
 import axios from "axios";
-import { useEffect, useReducer, useState } from "react"
+import { useContext, useEffect, useReducer, useState } from "react"
+import { CategoryContext } from "../App";
 
 export default function Category(){
-    const [categoryList,setCategoryList] = useState([]);
-    useEffect(()=>{
-        loadCategories();
-    },[]);
-    const loadCategories = ()=>{
-        axios.get("https://dummyjson.com/products/categories")
-        .then(response=>{
-           setCategoryList(response.data);
-         })
-        .catch(err=>{
-            console.log(err);
-        });
-    }
+    let {categoryList,setCategoryList} = useContext(CategoryContext);
     return <>
       <div className="container mt-3">
         {categoryList.length==0 ?<div style={{height:"100vh"}} className="d-flex justify-content-center align-items-center"> <button class="btn btn-primary">
