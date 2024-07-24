@@ -8,8 +8,10 @@ import CartRouter from "./routes/cart.routes.js";
 import url, { fileURLToPath } from "url";
 import path,{ dirname } from "path";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
