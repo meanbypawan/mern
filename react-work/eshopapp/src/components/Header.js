@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom";
 
 export default function Header() {
     let {categoryList} = useSelector((store)=>store.Categories);
@@ -10,7 +11,7 @@ export default function Header() {
                     <a className="nav-link" href="#">Home</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Products</a>
+                    <Link className="nav-link" to="/product">Products</Link>
                 </li>
 
                 <li className="nav-item dropdown">
@@ -21,6 +22,12 @@ export default function Header() {
                         {categoryList.map((category,index)=><a key={index} className="dropdown-item" href="#">{category.name}</a>)}
                         
                     </div>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/sign-in">Sign In</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/sign-up">Sign Up</Link>
                 </li>
             </ul>
         </nav>
