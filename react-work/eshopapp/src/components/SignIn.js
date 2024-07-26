@@ -2,17 +2,23 @@ import axios from "axios";
 import { useRef } from "react"
 import WebApis from "../apis/WebApis";
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { saveUser } from "../redux-config/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn(){
     let emailInput = useRef();
     let passwordInput = useRef();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const signInUser = async (event)=>{
        try{ 
         event.preventDefault();
         let email = emailInput.current.value;
         let password = passwordInput.current.value;
         let response = await axios.post(WebApis.SIGN_IN,{email,password});
-        console.log(response.data);
+        dispatch(saveUser(response.data));
+        navigate("/");
        }
        catch(err){
         toast.error("Invalid email or password");
