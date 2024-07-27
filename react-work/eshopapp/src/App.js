@@ -11,16 +11,6 @@ import axios from "axios";
 
 function App(){
   const dispatch = useDispatch();
-  const {token} = useSelector((store)=>store.User);
-  useEffect(()=>{
-    dispatch(fetchCategory());
-    axios.interceptors.request.use((config)=>{
-      console.log("Request Interceptor Executed...."+token);
-      config.headers.Authorization = token;
-      return config;
-    });
-  },[token]);
-  
   return <>
     <Header/>
     <div>
