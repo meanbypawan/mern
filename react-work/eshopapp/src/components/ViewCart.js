@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import WebApis from "../apis/WebApis";
+import { setCartItemList, updateQuantity } from "../redux-config/CartItemSlice";
 
 export default function ViewCart(){
     const {token,user} = useSelector((store)=>store.User);
-    const [cartItemList,setCartItemList] = useState([]);
+    const {cartItemList,totalPrice} = useSelector((store)=>store.CartItems);
+    const dispatch = useDispatch();
     useEffect(()=>{
       loadCartItems();
     },[]);
@@ -13,7 +15,7 @@ export default function ViewCart(){
      try{ 
        let response = await axios.get(WebApis.VIEW_CART+user._id,{headers:{"Authorization":"Bearer "+token}});
        console.log(response.data);
-       setCartItemList(response.data.cart.cartItems);
+       dispatch(setCartItemList(response.data.cart.cartItems));
      }
      catch(err){
       console.log(err);
@@ -45,9 +47,9 @@ export default function ViewCart(){
                   <td>{item.productId.brand ? item.productId.brand: "N/A"}</td>
                   <td>{item.productId.price}</td>
                   <td>
-                    <input type="number" defaultValue="1" style={{width:"50px",height:"20px"}}/>
+                    <input onChange={(event)=>dispatch(updateQuantity({qty: event.target.value,index}))} type="number" defaultValue="1" style={{width:"50px",height:"20px"}}/>
                   </td>
-                  <td>50000</td>
+                  <td>{item.productId.price*item.productId.qty}</td>
                   <td><small className="text-danger">Remove</small></td>
                 </tr>)}
               </tbody>
@@ -62,7 +64,7 @@ export default function ViewCart(){
               </div>
               <div className="d-flex justify-content-between p-2">
                 <small>Bill Amount</small>
-                <small>120000 Rs.</small>
+                <small>{totalPrice.toFixed(2)} Rs.</small>
               </div>
               <button className="btn btn-success" style={{width:"100%"}}>Checkout</button>
             </div>

@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import SignIn from "./components/SignIn";
 import ViewCart from "./components/ViewCart";
 import axios from "axios";
+import Auth from "./components/Auth";
 
 function App(){
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function App(){
         <Route path="/" element={<Home/>}/>
         <Route path="/product" element={<Product/>}/>
         <Route path="/sign-in" element={<SignIn/>}/>
-        <Route path="/view-cart" element={<ViewCart/>}/>
+        <Route path="/view-cart" element={<Auth><ViewCart/></Auth>}/>
       </Routes>
     </div>
   </>
