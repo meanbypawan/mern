@@ -26,8 +26,15 @@ const slice = createSlice({
           state.cartItemList.map((item)=>{
             state.totalPrice = state.totalPrice + item.productId.price * item.productId.qty;
           });
+        },
+        removeItem:(state,action)=>{
+          if(window.confirm("Do you want remove it?")){
+           console.log(action.payload); 
+           state.cartItemList.splice(action.payload,1);
+           state.cartItemList = [...state.cartItemList];
+          }
         }
     }
 });
-export const {setCartItemList, updateQuantity} = slice.actions;
+export const {setCartItemList, updateQuantity, removeItem} = slice.actions;
 export default slice.reducer;

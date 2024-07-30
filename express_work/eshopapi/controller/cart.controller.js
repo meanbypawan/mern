@@ -37,6 +37,7 @@ export const getCart = async (request,response,next)=>{
 export const deleteCartItem = async (request,response,next)=>{
     let productId = request.params.productId;
     let userId = request.params.userId;
+    console.log(productId+"  "+userId);
    try{
     Cart.updateOne({userId},{
         $pull:{cartItems:{productId}}

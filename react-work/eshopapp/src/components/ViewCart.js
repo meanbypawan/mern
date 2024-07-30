@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import WebApis from "../apis/WebApis";
-import { setCartItemList, updateQuantity } from "../redux-config/CartItemSlice";
+import { removeItem, setCartItemList, updateQuantity } from "../redux-config/CartItemSlice";
 
 export default function ViewCart(){
     const {token,user} = useSelector((store)=>store.User);
@@ -20,6 +20,14 @@ export default function ViewCart(){
      catch(err){
       console.log(err);
      }
+    }
+    const removeCartItems = (index,productId)=>{
+      axios.delete(WebApis.DELETECARTITEM+productId+"/"+user._id)
+      .then(result=>{
+        dispatch(removeItem(index));
+      }).catch(err=>{
+        window.alert("Oops! something went wrong...");
+      });
     }
     return <>
       <div className="container mt-5">
@@ -41,16 +49,16 @@ export default function ViewCart(){
                 </tr>
               </thead>
               <tbody>
-                {cartItemList.map((item,index)=><tr key={index}>
+                {cartItemList.map((item,index)=><tr id={"row"+index} key={index}>
                   <td>{index+1}</td>
                   <td>{item.productId.title}</td>
                   <td>{item.productId.brand ? item.productId.brand: "N/A"}</td>
                   <td>{item.productId.price}</td>
                   <td>
-                    <input onChange={(event)=>dispatch(updateQuantity({qty: event.target.value,index}))} type="number" defaultValue="1" style={{width:"50px",height:"20px"}}/>
+                    <input onChange={(event)=>dispatch(updateQuantity({qty: event.target.value,index}))} type="number" value={item.productId.qty} style={{width:"50px",height:"20px"}}/>
                   </td>
                   <td>{item.productId.price*item.productId.qty}</td>
-                  <td><small className="text-danger">Remove</small></td>
+                  <td><small onClick={()=>removeCartItems(index,item.productId._id)} style={{cursor:"pointer"}} className="text-danger">Remove</small></td>
                 </tr>)}
               </tbody>
             </table>
