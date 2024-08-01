@@ -9,6 +9,8 @@ import SignIn from "./components/SignIn";
 import ViewCart from "./components/ViewCart";
 import axios from "axios";
 import Auth from "./components/Auth";
+import SignUp from "./components/SignUp";
+import Footer from "./components/Footer";
 
 function App(){
   const dispatch = useDispatch();
@@ -20,8 +22,10 @@ function App(){
         <Route path="/product" element={<Product/>}/>
         <Route path="/sign-in" element={<SignIn/>}/>
         <Route path="/view-cart" element={<Auth><ViewCart/></Auth>}/>
+        <Route path="/sign-up" element={<SignUp/>}/>
       </Routes>
     </div>
+    <Footer/>
   </>
 }
 export default App;

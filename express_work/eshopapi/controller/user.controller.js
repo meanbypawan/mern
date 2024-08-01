@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import nodemailer from "nodemailer";
 const config = dotenv.config();
 export const signIn = async (request,response,next)=>{
    let {email,password} = request.body;
@@ -36,7 +37,31 @@ export const signUp = async (request,response,next)=>{
        profile = "images/"+request.file.filename;
     let {email,password,contact} = request.body;
     let user = await User.create({email,password,contact,profile});  
-    return response.status(201).json({message: "user saved",user});
+    
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'meanstack4@gmail.com',
+        pass: 'cbhw xgpl llrt iwod'
+      }
+    });
+    
+    var mailOptions = {
+      from: 'meanstack4@gmail.com',
+      to: email,
+      subject: 'Welcome In Eshop',
+      text: 'Dear user, Thank you registration'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        return response.status(201).json({message: "user saved",user});
+      }
+    });
+
   }
   catch(err){
     return response.status(500).json({error: "Internal Server Error"});

@@ -4,5 +4,6 @@ export default {
     SIGN_IN: "/user/signin",
     ADD_TO_CART: "/cart/add-to-cart",
     VIEW_CART: "/cart/",
-    DELETECARTITEM: "/cart/"
+    DELETECARTITEM: "/cart/",
+    SIGN_UP: "/user/signup"
 }

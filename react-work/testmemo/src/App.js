@@ -1,25 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import First from "./components/First";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App(){
+  console.log("App Component Render...");
+  const [counter,setCounter] = useState(100);
+  return <>
+    <h3>App Component...</h3>
+    <button onClick={()=>setCounter(counter+1)}>Counter : {counter}</button>
+    <First/>
+  </>
 }
-
-export default App;
